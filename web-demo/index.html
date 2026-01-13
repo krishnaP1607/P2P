@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer-to-Peer Delivery - Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Home Screen -->
+        <div id="home-screen" class="screen active">
+            <div class="hero-section">
+                <h1>Deliver Smarter,<br>Not Faster</h1>
+                <p>Save up to 70% on delivery costs</p>
+            </div>
+            
+            <div class="content">
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="showScreen('sender-screen')">
+                        <span class="icon">📦</span>
+                        Send a Package
+                    </button>
+                    <button class="btn btn-orange" onclick="showScreen('traveler-screen')">
+                        <span class="icon">🚶</span>
+                        Earn as Traveler
+                    </button>
+                </div>
+                
+                <div class="section">
+                    <h2>How it Works</h2>
+                    <div class="how-it-works">
+                        <div class="card glass-card">
+                            <div class="icon-circle">🏪</div>
+                            <h3>Drop at<br>Hub</h3>
+                        </div>
+                        <div class="card glass-card">
+                            <div class="icon-circle orange">🚶</div>
+                            <h3>Traveler<br>Picks Up</h3>
+                        </div>
+                        <div class="card glass-card">
+                            <div class="icon-circle green">🤝</div>
+                            <h3>Deliver &<br>Earn</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cost-card">
+                    <div class="cost-item">
+                        <span class="label">Traditional:</span>
+                        <span class="price old-price">₹150</span>
+                    </div>
+                    <div class="savings-badge">70% savings</div>
+                    <div class="cost-item">
+                        <span class="label">Our Price:</span>
+                        <span class="price new-price">₹45</span>
+                    </div>
+                </div>
+                
+                <button class="link-btn" onclick="showScreen('dashboard-screen')">
+                    View Community Impact →
+                </button>
+            </div>
+        </div>
+        
+        <!-- Sender Screen -->
+        <div id="sender-screen" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="showScreen('home-screen')">←</button>
+                <h2>Send Package</h2>
+            </div>
+            
+            <div class="content">
+                <div class="card">
+                    <h3>Locations</h3>
+                    <div class="input-group">
+                        <label>From</label>
+                        <input type="text" value="Koramangala, Bengaluru" id="fromLocation">
+                    </div>
+                    <div class="input-group">
+                        <label>To</label>
+                        <input type="text" value="Indiranagar, Bengaluru" id="toLocation">
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Select Hub</h3>
+                    <div class="hub-card" onclick="selectHub(this)">
+                        <span class="hub-icon">☕</span>
+                        <div>
+                            <strong>Daily Cafe Hub</strong>
+                            <small>0.3 km away</small>
+                        </div>
+                    </div>
+                    <div class="hub-card" onclick="selectHub(this)">
+                        <span class="hub-icon">🏪</span>
+                        <div>
+                            <strong>Quick Shop Hub</strong>
+                            <small>0.7 km away</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Parcel Details</h3>
+                    <div class="input-row">
+                        <select>
+                            <option>Medium</option>
+                            <option>Small</option>
+                            <option>Large</option>
+                        </select>
+                        <input type="text" value="2.5 kg" style="width: 100px;">
+                    </div>
+                </div>
+                
+                <div class="cost-comparison">
+                    <h3>Cost Comparison</h3>
+                    <div class="comparison-bars">
+                        <div class="bar-row">
+                            <span>Traditional</span>
+                            <div class="bar red" style="width: 100%">₹120</div>
+                        </div>
+                        <div class="bar-row">
+                            <span>P2P</span>
+                            <div class="bar green" style="width: 29%">₹35</div>
+                        </div>
+                    </div>
+                    <div class="savings-badge">SAVE ₹85</div>
+                </div>
+                
+                <div class="matched-travelers">
+                    <h3>Matched Travelers</h3>
+                    <div class="traveler-card">
+                        <div class="avatar">A</div>
+                        <div class="traveler-info">
+                            <strong>Aman G.</strong>
+                            <span>⭐ 4.8 • Koramangala → Indiranagar</span>
+                        </div>
+                        <div class="earnings">₹20</div>
+                    </div>
+                    <div class="traveler-card">
+                        <div class="avatar">P</div>
+                        <div class="traveler-info">
+                            <strong>Priya K.</strong>
+                            <span>⭐ 4.9 • Koramangala → Indiranagar</span>
+                        </div>
+                        <div class="earnings">₹20</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary btn-full" onclick="confirmDelivery()">
+                    CONFIRM DELIVERY
+                </button>
+            </div>
+        </div>
+        
+        <!-- Traveler Screen -->
+        <div id="traveler-screen" class="screen">
+            <div class="header">
+                <button class="back-btn" onclick="showScreen('home-screen')">←</button>
+                <h2>Available Deliveries</h2>
+                <div class="earnings-badge">Today: ₹120</div>
+            </div>
+            
+            <div class="content">
+                <div class="route-card">
+                    <div>
+                        <small>Your Daily Route</small>
+                        <h3>Whitefield → MG Road</h3>
+                    </div>
+                    <button class="icon-btn">✏️</button>
+                </div>
+                
+                <div class="parcel-list">
+                    <div class="parcel-card">
+                        <div class="parcel-icon">📦</div>
+                        <div class="parcel-info">
+                            <strong>Indiranagar → Koramangala</strong>
+                            <small>📏 8 km • ⚖️ Medium, 2kg</small>
+                            <small>☕ Cafe Hub → 🏪 Shop Hub</small>
+                        </div>
+                        <div class="parcel-earnings">
+                            <small>Earn</small>
+                            <strong>₹25</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="parcel-card">
+                        <div class="parcel-icon">📦</div>
+                        <div class="parcel-info">
+                            <strong>Jayanagar → JP Nagar</strong>
+                            <small>📏 6 km • ⚖️ Small, 1kg</small>
+                            <small>📚 Bookstore Hub → 🏪 Market Hub</small>
+                        </div>
+                        <div class="parcel-earnings">
+                            <small>Earn</small>
+                            <strong>₹18</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="parcel-card">
+                        <div class="parcel-icon">📦</div>
+                        <div class="parcel-info">
+                            <strong>HSR Layout → BTM Layout</strong>
+                            <small>📏 10 km • ⚖️ Large, 4kg</small>
+                            <small>🏢 Tech Park Hub → 🏪 Mall Hub</small>
+                        </div>
+                        <div class="parcel-earnings">
+                            <small>Earn</small>
+                            <strong>₹30</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dashboard Screen -->
+        <div id="dashboard-screen" class="screen">
+            <div class="dashboard-hero">
+                <button class="back-btn" onclick="showScreen('home-screen')">←</button>
+                <h2>Community Impact</h2>
+            </div>
+            
+            <div class="content dashboard-content">
+                <div class="stats-grid">
+                    <div class="stat-card green">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-value">₹45.2K</div>
+                        <div class="stat-label">Total Savings</div>
+                    </div>
+                    <div class="stat-card blue">
+                        <div class="stat-icon">🚚</div>
+                        <div class="stat-value">892</div>
+                        <div class="stat-label">Deliveries</div>
+                    </div>
+                    <div class="stat-card teal">
+                        <div class="stat-icon">🌱</div>
+                        <div class="stat-value">234 kg</div>
+                        <div class="stat-label">CO2 Saved</div>
+                    </div>
+                </div>
+                
+                <div class="chart-section">
+                    <h3>Cost Comparison</h3>
+                    <canvas id="costChart" width="300" height="200"></canvas>
+                    <div class="chart-legend">
+                        <span><span class="legend-dot red"></span> Traditional Delivery</span>
+                        <span><span class="legend-dot green"></span> P2P Delivery</span>
+                    </div>
+                </div>
+                
+                <div class="success-story">
+                    <h3>Success Stories</h3>
+                    <div class="story-card">
+                        <div class="avatar">P</div>
+                        <div>
+                            <strong>Priya Sharma</strong>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Saved ₹500 this month! This app is incredibly efficient."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="active-section">
+                    <h3>Active Now</h3>
+                    <div class="active-cards">
+                        <div class="active-card">
+                            <span class="icon">👥</span>
+                            <strong>24</strong>
+                            <small>Travelers Online</small>
+                        </div>
+                        <div class="active-card">
+                            <span class="icon">📦</span>
+                            <strong>18</strong>
+                            <small>Parcels Available</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

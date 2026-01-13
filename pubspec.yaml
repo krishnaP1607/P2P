@@ -1,0 +1,38 @@
+name: delivery_app
+description: Peer-to-peer delivery app prototype
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # UI & Styling
+  google_fonts: ^6.1.0
+  
+  # Maps (OpenStreetMap - No API Key Required)
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  
+  # Charts & Visualization
+  fl_chart: ^0.66.0
+  
+  # State Management
+  provider: ^6.1.1
+  
+  # Formatting
+  intl: ^0.19.0
+  
+  # Animations
+  animate_do: ^3.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
